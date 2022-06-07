@@ -13,7 +13,7 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/home/index'),
-    restricted: true,
+    restricted: false,
   },
 ]
 
