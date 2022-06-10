@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { BrowserRouter, Switch } from 'react-router-dom'
+import { HOME } from '../config/path'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
 import routes from './routes'
@@ -21,6 +22,7 @@ const AppRouter = () => {
 
             return isPrivate ? <PrivateRoute {...props} /> : <PublicRoute restricted={restricted} {...props} />
           })}
+          <PrivateRoute component={HOME} />
         </Switch>
       </Suspense>
     </BrowserRouter>

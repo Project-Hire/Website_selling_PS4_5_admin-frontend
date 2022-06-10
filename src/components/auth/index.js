@@ -1,37 +1,32 @@
 import { Button, Form, Input } from 'antd'
 import '../auth/Login.css'
 import Logo from '../../asset/Logo-main.png'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
-import { getToken } from '../../Http'
 import { HOME } from '../../config/path'
 import { API_LOGIN } from '../../config/endpointAPi'
-import { Link } from 'react-router-dom'
 import { AUTH_TOKEN, USER_INFO } from '../../config/const'
-
 
 const Login = () => {
   const history = useHistory()
+
   const onFinish = (values) => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${getToken()}`
     axios
       .post(API_LOGIN, values)
-      .then(function (res) {
+      .then((res) => {
         localStorage.setItem(USER_INFO, JSON.stringify(res.data.user))
         localStorage.setItem(AUTH_TOKEN, res.data.access_token)
         console.log(res)
         history.push(HOME)
-
-       
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.log(err)
       })
   }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+  // const onFinishFailed = (errorInfo) => {
+  //   console.log('Failed:', errorInfo)
+  // }
 
   return (
     <div className="login">
@@ -44,15 +39,7 @@ const Login = () => {
             <img src={Logo}></img>
           </div>
           <div className="login-title">Login into admin</div>
-          <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
-          >
+          <Form name="basic" labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={onFinish}>
             <Form.Item label="Email" name="email" rules={[{ required: true, message: 'Vui lòng nhập email!' }]}>
               <div className="form-input">
                 <Input />
