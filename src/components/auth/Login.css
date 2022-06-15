@@ -108,7 +108,7 @@ textarea {
   padding: 12px;
 }
 @media only screen and (max-width: 1024px) {
-  .login-background img {
+  .login-background {
     display: none;
   }
   .login-content {
