@@ -1,0 +1,40 @@
+.advertise .advertise-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.advertise .advertise-content .advertise-content-title {
+  font-size: 24px;
+}
+.advertise .advertise-three__dot {
+  cursor: pointer;
+}
+
+.advertise-popover .advertise-popover__content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.advertise-popover .advertise-popover__content:hover {
+  cursor: pointer;
+  background-color: bisque;
+}
+
+.advertise__create_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.advertise-create .advertise-create__title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.advertise-create .advertise-create__form {
+  width: 50%;
+  margin: auto;
+}

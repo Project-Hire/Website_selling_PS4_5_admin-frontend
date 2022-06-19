@@ -1,42 +1,62 @@
 import { Breadcrumb, Layout, Menu } from 'antd'
-import { Content, Footer, Header } from 'antd/lib/layout/layout'
-import Sider from 'antd/lib/layout/Sider'
+import { ToastContainer } from 'react-toastify'
 import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
-import { MdLogout } from 'react-icons/md'
-import { AiOutlineHome } from 'react-icons/ai'
-import { RiAdvertisementFill } from 'react-icons/ri'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
+import { ADVERTISEMENT, HOME } from '../config/path'
+import { Link, useLocation } from 'react-router-dom'
+import { AiOutlineHome } from 'react-icons/ai'
+import { RiAdvertisementLine } from 'react-icons/ri'
+
+const { SubMenu } = Menu
 
 const PrivateLayout = ({ children }) => {
+  const { pathname } = useLocation()
   const { Header, Content, Footer, Sider } = Layout
-  const { SubMenu } = Menu
   const [slidebar, setSlidebar] = useState(false)
-  const onCollapsed = () => {
-    setSlidebar(!slidebar)
-  }
+
+  const MENU = [
+    {
+      key: HOME,
+      icon: <AiOutlineHome />,
+      content: 'Home',
+      path: HOME,
+    },
+    {
+      key: ADVERTISEMENT,
+      icon: <RiAdvertisementLine />,
+      content: 'Advertisement',
+      path: ADVERTISEMENT,
+    },
+  ]
+
   return (
     <PrivateRoute>
       <div className="layout">
         <Layout style={{ minHeight: '100vh', textAlign: 'center' }}>
           <Sider collapsible onCollapse={slidebar}>
             <div className="logo">
-              <img style={{ width: '100%' }} className="img" src={Logo} />
+              <img style={{ width: '100%' }} className="img" src={Logo} alt="logo" />
             </div>
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-              <Menu.Item key="1" icon={<AiOutlineHome />}>
-                Trang chủ
-              </Menu.Item>
-              <Menu.Item key="2" icon={<RiAdvertisementFill />}>
-                Quảng cáo
-              </Menu.Item>
+            <Menu theme="dark" mode="inline">
+              {MENU.map((items) => {
+                return (
+                  <Menu.Item
+                    key={items.key}
+                    icon={items.icon}
+                    className={`${items.path === pathname ? 'layout-menu-select' : ''}`}
+                  >
+                    <Link to={items.path}>{items.content}</Link>
+                  </Menu.Item>
+                )
+              })}
             </Menu>
           </Sider>
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 10 }}>
               <div style={{ float: 'right', fontSize: 24, cursor: 'pointer' }}>
-                <MdLogout style={{ padding: 0 }} />
+                {/* <MdLogout style={{ padding: 0 }} /> */}
               </div>
             </Header>
             <Content style={{ margin: '0 16px' }}>
@@ -51,6 +71,17 @@ const PrivateLayout = ({ children }) => {
           </Layout>
         </Layout>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+      />
     </PrivateRoute>
   )
 }

@@ -7,3 +7,11 @@
 .site-layout .site-layout-background {
   background: #fff;
 }
+
+.layout .layout-menu-select {
+  background-color: rgb(172, 172, 255);
+}
+
+.layout .layout-menu-select:hover {
+  background-color: rgb(172, 172, 255);
+}
