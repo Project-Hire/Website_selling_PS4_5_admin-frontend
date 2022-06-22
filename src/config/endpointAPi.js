@@ -8,3 +8,4 @@ export const API_ADVERTISEMENT = `${BASE_API}/api/advertise`
 export const API_ADVERTISEMENT_DELETE = `${API_ADVERTISEMENT}/delete/:id`
 export const API_ADVERTISEMENT_STORE = `${API_ADVERTISEMENT}/store`
 export const API_ADVERTISEMENT_UPDATE = `${API_ADVERTISEMENT}/update`
+export const API_ADVERTISEMENT_DETAIL = `${API_ADVERTISEMENT}/detail/:id`

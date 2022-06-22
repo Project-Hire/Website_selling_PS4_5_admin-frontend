@@ -2,7 +2,7 @@ import { Button, Input, Popover, Table } from 'antd'
 import QueryString from 'qs'
 import React, { useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { ADVERTISEMENT, ADVERTISEMENT_CREATE } from '../../config/path'
+import { ADVERTISEMENT, ADVERTISEMENT_CREATE, ADVERTISEMENT_UPDATE } from '../../config/path'
 import useAdvertisementQuery from '../../hooks/useAdvertismentQuery'
 import PrivateLayout from '../../layout/PrivateLayout'
 import { BsThreeDots } from 'react-icons/bs'
@@ -57,7 +57,7 @@ const Advertisement = () => {
               <AiFillDelete />
               <div>Delete</div>
             </div>
-            <div className="advertise-popover__content">
+            <div className="advertise-popover__content" onClick={() => onGoToUpdate(id)}>
               <MdUpdate />
               <div>Update</div>
             </div>
@@ -84,6 +84,10 @@ const Advertisement = () => {
       .catch((err) => {
         toast.error(err?.message)
       })
+  }
+
+  const onGoToUpdate = (id) => {
+    history.push(bindParams(ADVERTISEMENT_UPDATE, { id }))
   }
 
   const onSearch = (value) => {
