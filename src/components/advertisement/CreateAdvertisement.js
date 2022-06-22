@@ -4,32 +4,34 @@ import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
 import '../../style/Advertisement.css'
-import { API_ADVERTISEMENT_STORE } from '../../config/endpointAPi'
-import { postAxios } from '../../Http'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import { ADVERTISEMENT } from '../../config/path'
+import useCreateAdvertisement from '../../hooks/useCreateAdvertisement'
 
 const CreateAdvertisement = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
+  const createAdvertise = useCreateAdvertisement()
 
   const onCreateAdvertisement = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
 
-    postAxios(API_ADVERTISEMENT_STORE, value)
-      .then((res) => {
-        if (res.status === 1) {
+    createAdvertise.mutate(value, {
+      onSuccess: (data, variables, context) => {
+        console.log(data, variables, context)
+        if (data.status === 1) {
           queryClient.invalidateQueries(['advertisement'])
-          toast.success(res?.message)
+          toast.success(data?.message)
           setTimeout(() => {
             history.push(ADVERTISEMENT)
           }, 1000)
         }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      },
+      onError: (error) => {
+        toast.error(error?.message)
+      },
+    })
   }
 
   return (
