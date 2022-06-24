@@ -2,7 +2,7 @@ import { Button, Input, Popover, Table } from 'antd'
 import QueryString from 'qs'
 import React, { useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { ADVERTISEMENT, ADVERTISEMENT_CREATE, ADVERTISEMENT_UPDATE } from '../../config/path'
+import { ADVERTISEMENT, ADVERTISEMENT_CREATE, ADVERTISEMENT_DETAIL, ADVERTISEMENT_UPDATE } from '../../config/path'
 import useAdvertisementQuery from '../../hooks/useAdvertismentQuery'
 import PrivateLayout from '../../layout/PrivateLayout'
 import { BsThreeDots } from 'react-icons/bs'
@@ -15,13 +15,18 @@ import { postAxios } from '../../Http'
 import { API_ADVERTISEMENT_DELETE } from '../../config/endpointAPi'
 import { bindParams } from '../../config/function'
 import { toast } from 'react-toastify'
+import CustomModal from '../../common/CustomModal'
+import { ModalDeleteItem } from '../../widgets/ModalDeleteItem'
 
 const { Search } = Input
 const Advertisement = () => {
   const location = useLocation()
   const history = useHistory()
   const queryClient = useQueryClient()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenPopover, setIsPopover] = useState(false)
   const searchUrl = QueryString.parse(location.search.substr(1))
+  const [idDelete, setIdDelete] = useState(0)
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
@@ -29,21 +34,32 @@ const Advertisement = () => {
   const { data: advertise, isError, isLoading, isFetching } = useAdvertisementQuery([limit, keyword, page])
   const data = advertise?.data || []
 
+  const onCell = (record) => {
+    return {
+      onClick: () => {
+        history.push(bindParams(ADVERTISEMENT_DETAIL, { id: record.id }))
+      },
+    }
+  }
+
   const column = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      onCell,
     },
     {
       title: 'Image',
       dataIndex: 'image',
       key: 'image',
+      onCell,
     },
     {
       title: 'Created at',
       dataIndex: 'created_at',
       key: 'created_at',
+      onCell,
     },
     {
       title: '',
@@ -53,7 +69,7 @@ const Advertisement = () => {
       render: ({ id }) => {
         const content = (
           <div className="advertise-popover">
-            <div className="advertise-popover__content" onClick={() => onDelete(id)}>
+            <div className="advertise-popover__content" onClick={() => onOpenModal(id)}>
               <AiFillDelete />
               <div>Delete</div>
             </div>
@@ -65,7 +81,13 @@ const Advertisement = () => {
         )
 
         return (
-          <Popover placement="bottom" content={content} trigger="click">
+          <Popover
+            onVisibleChange={handleVisibleChange}
+            visible={isOpenPopover}
+            placement="bottom"
+            content={content}
+            trigger="click"
+          >
             <BsThreeDots className="advertise-three__dot" />
           </Popover>
         )
@@ -73,8 +95,8 @@ const Advertisement = () => {
     },
   ]
 
-  const onDelete = (id) => {
-    postAxios(bindParams(API_ADVERTISEMENT_DELETE, { id }))
+  const onDelete = () => {
+    postAxios(bindParams(API_ADVERTISEMENT_DELETE, { id: idDelete }))
       .then((res) => {
         if (res.status === 1) {
           toast.success(res?.message)
@@ -84,6 +106,13 @@ const Advertisement = () => {
       .catch((err) => {
         toast.error(err?.message)
       })
+      .finally(() => {
+        setIsOpen(false)
+      })
+  }
+
+  const handleVisibleChange = (newVisible) => {
+    setIsPopover(newVisible)
   }
 
   const onGoToUpdate = (id) => {
@@ -97,6 +126,16 @@ const Advertisement = () => {
       pathname: ADVERTISEMENT,
       search: QueryString.stringify(params),
     })
+  }
+
+  const onOpenModal = (id) => {
+    setIdDelete(id)
+    setIsPopover(true)
+    setIsOpen(true)
+  }
+
+  const onCloseModal = () => {
+    setIsOpen(false)
   }
 
   const onChangePage = (page, limit) => {
@@ -128,6 +167,7 @@ const Advertisement = () => {
           </div>
         </div>
         <Table
+          className="advertise-table"
           dataSource={data}
           columns={column}
           scroll={{
@@ -146,6 +186,9 @@ const Advertisement = () => {
           }}
         />
       </div>
+      <CustomModal isOpen={isOpen} onRequestClose={onCloseModal}>
+        <ModalDeleteItem title={'Do you want to delete ?'} handleClose={onCloseModal} handleDelete={onDelete} />
+      </CustomModal>
     </PrivateLayout>
   )
 }
