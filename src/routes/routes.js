@@ -5,6 +5,8 @@ import {
   ADVERTISEMENT_DETAIL,
   ADVERTISEMENT_UPDATE,
   HOME,
+  CDGAME,
+  CDGAME_CREATE,
 } from '../config/path'
 
 const routes = [
@@ -48,6 +50,20 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/advertisement/AdvertisementDetail'),
+    restricted: false,
+  },
+  {
+    path: CDGAME,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/cdgame/index'),
+    restricted: false,
+  },
+  {
+    path: CDGAME_CREATE,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/cdgame/CreateCDGame'),
     restricted: false,
   },
 ]

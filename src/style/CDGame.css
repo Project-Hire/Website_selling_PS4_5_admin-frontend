@@ -1,0 +1,41 @@
+.cdgame .cdgame-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+  }
+  
+  .cdgame .cdgame-content .cdgame-content-title {
+    font-size: 24px;
+  }
+  .cdgame .cdgame-three__dot {
+    cursor: pointer;
+  }
+  
+  .cdgame-popover .cdgame-popover__content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .cdgame-popover .cdgame-popover__content:hover {
+    cursor: pointer;
+    background-color: bisque;
+  }
+  
+  .cdgame__create_btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .cdgame-create .cdgame-create__title {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  .cdgame-create .cdgame-create__form {
+    width: 50%;
+    margin: auto;
+  }
+  

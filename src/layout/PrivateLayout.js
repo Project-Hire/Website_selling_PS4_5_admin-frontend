@@ -4,10 +4,11 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ADVERTISEMENT, HOME } from '../config/path'
+import { ADVERTISEMENT, CDGAME, HOME } from '../config/path'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
 import { RiAdvertisementLine } from 'react-icons/ri'
+import { GiCompactDisc } from 'react-icons/gi'
 
 const { SubMenu } = Menu
 
@@ -28,6 +29,12 @@ const PrivateLayout = ({ children }) => {
       icon: <RiAdvertisementLine />,
       content: 'Advertisement',
       path: ADVERTISEMENT,
+    },
+    {
+      key: CDGAME,
+      icon: <GiCompactDisc />,
+      content: 'CD Games',
+      path: CDGAME,
     },
   ]
 
