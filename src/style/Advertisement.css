@@ -38,3 +38,7 @@
   width: 50%;
   margin: auto;
 }
+
+.advertise-table .ant-table-row {
+  cursor: pointer;
+}

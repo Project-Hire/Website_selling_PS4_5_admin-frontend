@@ -1,4 +1,11 @@
-import { ADMIN_LOGIN, ADVERTISEMENT, ADVERTISEMENT_CREATE, ADVERTISEMENT_UPDATE, HOME } from '../config/path'
+import {
+  ADMIN_LOGIN,
+  ADVERTISEMENT,
+  ADVERTISEMENT_CREATE,
+  ADVERTISEMENT_DETAIL,
+  ADVERTISEMENT_UPDATE,
+  HOME,
+} from '../config/path'
 
 const routes = [
   {
@@ -34,6 +41,13 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/advertisement/UpdateAdvertisement'),
+    restricted: false,
+  },
+  {
+    path: ADVERTISEMENT_DETAIL,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/advertisement/AdvertisementDetail'),
     restricted: false,
   },
 ]

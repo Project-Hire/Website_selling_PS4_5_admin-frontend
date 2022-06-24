@@ -1,0 +1,8 @@
+.modal-delete {
+  width: 400px;
+}
+
+.modal-delete .modal-delete__title {
+  position: relative;
+  width: 100%;
+}

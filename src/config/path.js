@@ -12,3 +12,4 @@ export const HOME = `${DASHBOARD}`
 export const ADVERTISEMENT = `${ADMIN}/advertisement`
 export const ADVERTISEMENT_CREATE = `${ADVERTISEMENT}/create`
 export const ADVERTISEMENT_UPDATE = `${ADVERTISEMENT}/:id/update`
+export const ADVERTISEMENT_DETAIL = `${ADVERTISEMENT}/detail/:id`
