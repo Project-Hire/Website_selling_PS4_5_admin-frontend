@@ -139,7 +139,7 @@ const CDGame = () => {
           <Button type="primary">Create CD_Game</Button>
         </Link>
         <div className="cdgame-content">
-          <div className="cdgame-content-title">Table CD_Games</div>
+          <div className="cdgame-content-title">Table CD Games</div>
           <div className="cdgame-content-search">
             <Search
               loading={isFetching}
