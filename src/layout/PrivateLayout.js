@@ -4,10 +4,11 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ADVERTISEMENT, HOME } from '../config/path'
+import { ADVERTISEMENT, CDGAME, HOME } from '../config/path'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
 import { RiAdvertisementLine } from 'react-icons/ri'
+import { GiCompactDisc } from 'react-icons/gi'
 
 const { SubMenu } = Menu
 
@@ -29,13 +30,26 @@ const PrivateLayout = ({ children }) => {
       content: 'Advertisement',
       path: ADVERTISEMENT,
     },
+    {
+      key: CDGAME,
+      icon: <GiCompactDisc />,
+      content: 'CD Games',
+      path: CDGAME,
+    },
   ]
 
   return (
     <PrivateRoute>
       <div className="layout">
         <Layout style={{ minHeight: '100vh', textAlign: 'center' }}>
-          <Sider collapsible onCollapse={slidebar}>
+          <Sider collapsible 
+                      breakpoint="lg"
+                      collapsedWidth="0"
+                      onBreakpoint={(broken) => {
+                      }}
+                      onCollapse={(collapsed, type) => {
+                        console.log(collapsed, type)
+                      }}>
             <div className="logo">
               <img style={{ width: '100%' }} className="img" src={Logo} alt="logo" />
             </div>

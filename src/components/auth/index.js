@@ -55,10 +55,7 @@ const Login = () => {
                 <Input.Password />
               </div>
             </Form.Item>
-            {/* <div className="login-forgot">Forgot password ?</div> */}
-            <div>
-              <Link to={HOME}>Link</Link>
-            </div>
+
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <div className="login-btn">
                 <Button type="primary" htmlType="submit">
