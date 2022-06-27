@@ -1,3 +1,4 @@
+
 import {
   ADMIN_LOGIN,
   ADVERTISEMENT,
@@ -7,6 +8,8 @@ import {
   HOME,
   CDGAME,
   CDGAME_CREATE,
+  CDGAME_UPDATE,
+  CDGAME_DETAIL,
 } from '../config/path'
 
 const routes = [
@@ -64,6 +67,20 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/cdgame/CreateCDGame'),
+    restricted: false,
+  },
+  {
+    path: CDGAME_UPDATE,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/cdgame/UpdateCDGame'),
+    restricted: false,
+  },
+  {
+    path: CDGAME_DETAIL,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/cdgame/CDGameDetail'),
     restricted: false,
   },
 ]

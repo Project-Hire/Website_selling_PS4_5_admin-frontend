@@ -33,6 +33,7 @@ const Advertisement = () => {
 
   const { data: advertise, isError, isLoading, isFetching } = useAdvertisementQuery([limit, keyword, page])
   const data = advertise?.data || []
+  console.log(data);
 
   const onCell = (record) => {
     return {
@@ -69,7 +70,7 @@ const Advertisement = () => {
       render: ({ id }) => {
         const content = (
           <div className="advertise-popover">
-            <div className="advertise-popover__content" onClick={() => onOpenModal(id)}>
+            <div className="advertise-popover__content" onClick={() => onDelete(id)}>
               <AiFillDelete />
               <div>Delete</div>
             </div>

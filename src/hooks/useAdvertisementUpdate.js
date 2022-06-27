@@ -6,8 +6,8 @@ const updateAdvertisement = async (params) => {
   return await putAxios(API_ADVERTISEMENT_UPDATE, params)
 }
 
-const useUpdateAdvertisement = () => {
+const useAdvertisementUpdate = () => {
   return useMutation(updateAdvertisement)
 }
 
-export default useUpdateAdvertisement
+export default useAdvertisementUpdate

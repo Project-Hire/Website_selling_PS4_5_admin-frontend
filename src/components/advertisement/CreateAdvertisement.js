@@ -7,7 +7,7 @@ import '../../style/Advertisement.css'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import { ADVERTISEMENT } from '../../config/path'
-import useCreateAdvertisement from '../../hooks/useCreateAdvertisement'
+import useAdvertisementCreate from '../../hooks/useAdvertisementCreate'
 import UploadFormItem from '../../common/UploadFormItem/index.js'
 import { API_UPLOAD, UPLOAD_PRESET } from '../../config/const'
 import axios from 'axios'
@@ -24,7 +24,7 @@ const CreateAdvertisement = () => {
   const history = useHistory()
   const [uploadState, setUploadState] = useState(updateDefault)
   const queryClient = useQueryClient()
-  const createAdvertise = useCreateAdvertisement()
+  const createAdvertise = useAdvertisementCreate()
 
   const normFile = (e) => {
     if (Array.isArray(e)) {
@@ -81,7 +81,7 @@ const CreateAdvertisement = () => {
             setUploadState={setUploadState}
             uploadTitle={
               <>
-                <p>{'Thêm ảnh'}</p>
+                <p>{'Add Image'}</p>
               </>
             }
             limit={1}
@@ -91,7 +91,7 @@ const CreateAdvertisement = () => {
               rules: [
                 {
                   required: true,
-                  message: 'Vui lòng một chọn ảnh',
+                  message: 'Please choose 1 photo',
                 },
               ],
               valuePropName: 'fileList',

@@ -6,8 +6,8 @@ const createAdvertisement = async (params) => {
   return await postAxios(API_ADVERTISEMENT_STORE, params)
 }
 
-const useCreateAdvertisement = () => {
+const useAdvertisementCreate = () => {
   return useMutation(createAdvertisement)
 }
 
-export default useCreateAdvertisement
+export default useAdvertisementCreate
