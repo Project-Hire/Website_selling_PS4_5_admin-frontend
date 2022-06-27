@@ -39,6 +39,15 @@
   margin: auto;
 }
 
+.advertise-create-upload {
+  width: 100%;
+}
+
+.advertise-create-upload .ant-upload {
+  width: 100%;
+  height: 350px;
+}
+
 .advertise-table .ant-table-row {
   cursor: pointer;
 }

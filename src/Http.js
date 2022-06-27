@@ -11,10 +11,10 @@ export const getToken = () => {
 }
 
 // GLOBAL DEFAULT
-axios.defaults.headers.common['Cache-Control'] = 'no-cache'
-axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.headers.common['Cache-Control'] = 'max-age=0'
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+// axios.defaults.headers.common['Cache-Control'] = 'no-cache'
+// axios.defaults.headers.post['Content-Type'] = 'application/json'
+// axios.defaults.headers.common['Cache-Control'] = 'max-age=0'
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 // get fuction handler un-authenticate request
 export function getAxios(url, params, configs = {}) {
