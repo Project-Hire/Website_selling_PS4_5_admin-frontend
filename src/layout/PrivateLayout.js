@@ -42,7 +42,14 @@ const PrivateLayout = ({ children }) => {
     <PrivateRoute>
       <div className="layout">
         <Layout style={{ minHeight: '100vh', textAlign: 'center' }}>
-          <Sider collapsible onCollapse={slidebar}>
+          <Sider collapsible 
+                      breakpoint="lg"
+                      collapsedWidth="0"
+                      onBreakpoint={(broken) => {
+                      }}
+                      onCollapse={(collapsed, type) => {
+                        console.log(collapsed, type)
+                      }}>
             <div className="logo">
               <img style={{ width: '100%' }} className="img" src={Logo} alt="logo" />
             </div>
