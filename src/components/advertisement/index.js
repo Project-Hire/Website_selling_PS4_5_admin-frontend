@@ -33,6 +33,7 @@ const Advertisement = () => {
 
   const { data: advertise, isError, isLoading, isFetching } = useAdvertisementQuery([limit, keyword, page])
   const data = advertise?.data || []
+  console.log(data)
 
   const onCell = (record) => {
     return {
@@ -81,13 +82,7 @@ const Advertisement = () => {
         )
 
         return (
-          <Popover
-            onVisibleChange={handleVisibleChange}
-            visible={isOpenPopover}
-            placement="bottom"
-            content={content}
-            trigger="click"
-          >
+          <Popover placement="bottom" content={content} trigger="click">
             <BsThreeDots className="advertise-three__dot" />
           </Popover>
         )

@@ -2,7 +2,7 @@ import { Button, Input, Popover, Table } from 'antd'
 import QueryString from 'qs'
 import React, { useState } from 'react'
 import { Link, useHistory, useLocation } from 'react-router-dom'
-import { CDGAME, CDGAME_CREATE } from '../../config/path'
+import { CDGAME, CDGAME_CREATE, CDGAME_DETAIL, CDGAME_UPDATE } from '../../config/path'
 import useCDGameQuery from '../../hooks/useCDGameQuery'
 import PrivateLayout from '../../layout/PrivateLayout'
 import { BsThreeDots } from 'react-icons/bs'
@@ -15,14 +15,20 @@ import { postAxios } from '../../Http'
 import { API_CDGAME_DELETE } from '../../config/endpointAPi'
 import { bindParams } from '../../config/function'
 import { toast } from 'react-toastify'
-
+import CustomModal from '../../common/CustomModal'
+import { ModalDeleteItem } from '../../widgets/ModalDeleteItem'
 
 const { Search } = Input
 const CDGame = () => {
   const location = useLocation()
   const history = useHistory()
   const queryClient = useQueryClient()
+  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenPopover, setIsPopover] = useState(false)
+
   const searchUrl = QueryString.parse(location.search.substr(1))
+  const [idDelete, setIdDelete] = useState(0)
+
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
@@ -30,46 +36,61 @@ const CDGame = () => {
   const { data: cdgame, isError, isLoading, isFetching } = useCDGameQuery([limit, keyword, page])
   const data = cdgame?.data || []
 
+  const onCell = (record) => {
+    return {
+      onClick: () => {
+        history.push(bindParams(CDGAME_DETAIL, { id: record.id }))
+      },
+    }
+  }
   const column = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
+      onCell,
     },
     {
       title: 'Trade Maker ID',
       dataIndex: 'trademark_id',
       key: 'trademark_id',
+      onCell,
     },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
+      onCell,
     },
     {
       title: 'Discount',
       dataIndex: 'discount',
       key: 'discount',
+      onCell,
     },
     {
       title: 'Price',
       dataIndex: 'price',
       key: 'price',
+      onCell,
     },
     {
       title: 'Image',
       dataIndex: 'image',
       key: 'image',
+      onCell,
     },
     {
       title: 'Viewer',
       dataIndex: 'viewer',
       key: 'viewer',
+      onCell,
     },
     {
       title: 'Created at',
       dataIndex: 'created_at',
       key: 'created_at',
+      onCell,
     },
     {
       title: '',
@@ -79,11 +100,11 @@ const CDGame = () => {
       render: ({ id }) => {
         const content = (
           <div className="cdgame-popover">
-            <div className="cdgame-popover__content" onClick={() => onDelete(id)}>
+            <div className="cdgame-popover__content" onClick={() => onOpenModal(id)}>
               <AiFillDelete />
               <div>Delete</div>
             </div>
-            <div className="cdgame-popover__content">
+            <div className="cdgame-popover__content" onClick={() => onGoToUpdate(id)}>
               <MdUpdate />
               <div>Update</div>
             </div>
@@ -92,7 +113,7 @@ const CDGame = () => {
 
         return (
           <Popover placement="bottom" content={content} trigger="click">
-            <BsThreeDots className="cdgame-three__dot" />
+            <BsThreeDots className="advertise-three__dot" />
           </Popover>
         )
       },
@@ -100,7 +121,7 @@ const CDGame = () => {
   ]
 
   const onDelete = (id) => {
-    postAxios(bindParams(API_CDGAME_DELETE, { id }))
+    postAxios(bindParams(API_CDGAME_DELETE, { id: idDelete }))
       .then((res) => {
         if (res.status === 1) {
           toast.success(res?.message)
@@ -110,8 +131,16 @@ const CDGame = () => {
       .catch((err) => {
         toast.error(err?.message)
       })
+      .finally(() => {
+        setIsOpen(false)
+      })
   }
-
+  const handleVisibleChange = (newVisible) => {
+    setIsPopover(newVisible)
+  }
+  const onGoToUpdate = (id) => {
+    history.push(bindParams(CDGAME_UPDATE, { id }))
+  }
   const onSearch = (value) => {
     let params = { page, limit, keyword: value }
 
@@ -119,6 +148,16 @@ const CDGame = () => {
       pathname: CDGAME,
       search: QueryString.stringify(params),
     })
+  }
+
+  const onOpenModal = (id) => {
+    setIdDelete(id)
+    setIsPopover(true)
+    setIsOpen(true)
+  }
+
+  const onCloseModal = () => {
+    setIsOpen(false)
   }
 
   const onChangePage = (page, limit) => {
@@ -130,7 +169,7 @@ const CDGame = () => {
     })
   }
 
-//   if (isError) return <ErrorPage />
+  //   if (isError) return <ErrorPage />
 
   return (
     <PrivateLayout>
@@ -168,6 +207,9 @@ const CDGame = () => {
           }}
         />
       </div>
+      <CustomModal isOpen={isOpen} onRequestClose={onCloseModal}>
+        <ModalDeleteItem title={'Do you want to delete ?'} handleClose={onCloseModal} handleDelete={onDelete} />
+      </CustomModal>
     </PrivateLayout>
   )
 }

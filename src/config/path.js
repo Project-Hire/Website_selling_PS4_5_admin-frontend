@@ -17,3 +17,5 @@ export const ADVERTISEMENT_DETAIL = `${ADVERTISEMENT}/detail/:id`
 //CDGame
 export const CDGAME = `${ADMIN}/cdgame`
 export const CDGAME_CREATE = `${CDGAME}/create`
+export const CDGAME_UPDATE = `${CDGAME}/:id/update`
+export const CDGAME_DETAIL = `${CDGAME}/detail/:id`

@@ -6,7 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { ADVERTISEMENT } from '../../config/path'
 import useAdvertisementDetailQuery from '../../hooks/useAdvertisementDetailQuery'
-import useUpdateAdvertisement from '../../hooks/useUpdateAdvertisement'
+import useUpdateAdvertisement from '../../hooks/useAdvertisementUpdate'
 import PrivateLayout from '../../layout/PrivateLayout'
 
 const UpdateAdvertisement = () => {
@@ -17,6 +17,8 @@ const UpdateAdvertisement = () => {
   const queryClient = useQueryClient()
   const { data: advertise } = useAdvertisementDetailQuery(id_advertisement)
   const updateAdervise = useUpdateAdvertisement()
+  console.log(advertise);
+
 
   useEffect(() => {
     form.setFieldsValue({
