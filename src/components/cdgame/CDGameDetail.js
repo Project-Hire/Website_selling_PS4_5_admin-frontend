@@ -7,6 +7,7 @@ const CDGameDetail = () => {
   const location = useLocation()
   const id_cdgame = location.pathname.split('/')[4]
   const { data: cdgame } = useCDGameDetailQuery(id_cdgame)
+  console.log(id_cdgame);
 
   return (
     <PrivateLayout>

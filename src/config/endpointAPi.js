@@ -17,3 +17,9 @@ export const API_CDGAME_STORE = `${API_CDGAME}/store`
 export const API_CDGAME_UPDATE = `${API_CDGAME}/update`
 export const API_CDGAME_DETAIL = `${API_CDGAME}/detail/:id`
 
+//Api Trademark
+export const API_TRADEMARK = `${BASE_API}/api/trademarks`
+export const API_TRADEMARK_DELETE = `${API_TRADEMARK}/delete/:id`
+export const API_TRADEMARK_STORE = `${API_TRADEMARK}/store`
+export const API_TRADEMARK_UPDATE = `${API_TRADEMARK}/update`
+export const API_TRADEMARK_DETAIL = `${API_TRADEMARK}/detail/:id`

@@ -1,7 +1,7 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import React, { useState } from 'react'
 import moment from 'moment'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
 import '../../style/Advertisement.css'
 import { API_CDGAME_STORE } from '../../config/endpointAPi'
@@ -12,7 +12,10 @@ import { CDGAME } from '../../config/path'
 import { API_UPLOAD, UPLOAD_PRESET } from '../../config/const'
 import axios from 'axios'
 import useCDGameCreate from '../../hooks/useCDGameCreate'
-import UploadFormItem from '../../common/UploadFormItem'
+import useCDGameDetailQuery from '../../hooks/useCDGameDetailQuery'
+import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
+import QueryString from 'qs'
+import { Option } from 'antd/lib/mentions'
 
 const updateDefault = {
   previewVisible: false,
@@ -24,54 +27,36 @@ const updateDefault = {
 
 const CreateCDGame = () => {
   const history = useHistory()
-  const [uploadState, setUploadState] = useState(updateDefault)
   const queryClient = useQueryClient()
-  const createAdvertise = useCDGameCreate()
+  const location = useLocation()
+  const id_trademark = location.pathname.split('/')[3]
+  console.log(location.pathname)
+  const searchUrl = QueryString.parse(location.search.substr(1))
 
-  const normFile = (e) => {
-    if (Array.isArray(e)) {
-      return e
-    }
+  console.log(id_trademark)
+  const [limit] = useState(searchUrl?.limit || 10)
+  const [keyword] = useState(searchUrl?.keyword || '')
+  const [page] = useState(searchUrl?.page || 1)
 
-    return e && e.fileList
-  }
-
+  const { data: trademark} = useTradeMarkQuery([limit, keyword, page])
+  console.log(trademark?.data)
+  const trademark_list = trademark?.data
   const onCreateCDGame = (value) => {
-    const { image } = value
-    const formData = new FormData()
-
-    formData.append('file', image[0].originFileObj)
-    formData.append('upload_preset', UPLOAD_PRESET)
-
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
 
-    axios
-      .post(API_UPLOAD, formData)
+    postAxios(API_CDGAME_STORE, value)
       .then((res) => {
-        value.image = res.data.secure_url
-      })
-      .then(() => {
-        createAdvertise.mutate(value, {
-          onSuccess: (data, variables, context) => {
-            console.log(data, variables, context)
-            if (data.status === 1) {
-              queryClient.invalidateQueries(['cdgame'])
-              toast.success(data?.message)
-              setTimeout(() => {
-                history.push(CDGAME)
-              }, 1000)
-            }
-          },
-          onError: (error) => {
-            toast.error(error?.message)
-          },
-        })
+        if (res.status === 1) {
+          queryClient.invalidateQueries(['cdgame'])
+          toast.success(res?.message)
+          setTimeout(() => {
+            history.push(CDGAME)
+          }, 1000)
+        }
       })
       .catch((err) => {
         console.log(err)
       })
-
-
   }
 
   return (
@@ -79,11 +64,7 @@ const CreateCDGame = () => {
       <div className="cdgame-create">
         <div className="cdgame-create__title">Create CD_Game</div>
         <Form onFinish={onCreateCDGame} layout="vertical" className="cdgame-create__form">
-          <Form.Item
-            label="Name"
-            name="name"
-            rules={[{ required: true, message: 'Please input name of CD_Games!' }]}
-          >
+          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of CD_Games!' }]}>
             <Input placeholder="Name of CD_Games" />
           </Form.Item>
           <Form.Item
@@ -107,29 +88,21 @@ const CreateCDGame = () => {
           >
             <Input placeholder="Discount of product" />
           </Form.Item>
-          <UploadFormItem
-            uploadState={uploadState}
-            className="cdgame-create-upload"
-            setUploadState={setUploadState}
-            uploadTitle={
-              <>
-                <p>{'Add Image'}</p>
-              </>
-            }
-            limit={1}
-            formItemProps={{
-              label: 'Photo',
-              name: 'image',
-              rules: [
-                {
-                  required: true,
-                  message: 'Please choose 1 photo',
-                },
-              ],
-              valuePropName: 'fileList',
-              getValueFromEvent: normFile,
-            }}
-          />
+          <Form.Item
+            label="TradeMark"
+            name="trademark_id"
+            rules={[{ required: true, message: 'Please input the discount!' }]}
+          >
+            <Select placeholder="Please select trade mark">
+              {trademark_list?.map((mark) => {
+                return <Option value={mark?.id}>{mark?.name}</Option>
+              })}
+            </Select>
+          </Form.Item>
+          <Form.Item label="Image" name="image" rules={[{ required: true, message: 'Please input the image url!' }]}>
+            <Input placeholder="Image URL" />
+          </Form.Item>
+
           <Button htmlType="submit">Create</Button>
         </Form>
       </div>

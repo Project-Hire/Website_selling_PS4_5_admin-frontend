@@ -112,13 +112,7 @@ const CDGame = () => {
         )
 
         return (
-          <Popover
-            onVisibleChange={handleVisibleChange}
-            visible={isOpenPopover}
-            placement="bottom"
-            content={content}
-            trigger="click"
-          >
+          <Popover placement="bottom" content={content} trigger="click">
             <BsThreeDots className="advertise-three__dot" />
           </Popover>
         )

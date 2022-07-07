@@ -33,7 +33,7 @@ const Advertisement = () => {
 
   const { data: advertise, isError, isLoading, isFetching } = useAdvertisementQuery([limit, keyword, page])
   const data = advertise?.data || []
-  console.log(data);
+  console.log(data)
 
   const onCell = (record) => {
     return {
@@ -70,7 +70,7 @@ const Advertisement = () => {
       render: ({ id }) => {
         const content = (
           <div className="advertise-popover">
-            <div className="advertise-popover__content" onClick={() => onDelete(id)}>
+            <div className="advertise-popover__content" onClick={() => onOpenModal(id)}>
               <AiFillDelete />
               <div>Delete</div>
             </div>
@@ -82,13 +82,7 @@ const Advertisement = () => {
         )
 
         return (
-          <Popover
-            onVisibleChange={handleVisibleChange}
-            visible={isOpenPopover}
-            placement="bottom"
-            content={content}
-            trigger="click"
-          >
+          <Popover placement="bottom" content={content} trigger="click">
             <BsThreeDots className="advertise-three__dot" />
           </Popover>
         )
