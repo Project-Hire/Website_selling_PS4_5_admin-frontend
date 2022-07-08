@@ -19,3 +19,21 @@ export const CDGAME = `${ADMIN}/cdgame`
 export const CDGAME_CREATE = `${CDGAME}/create`
 export const CDGAME_UPDATE = `${CDGAME}/:id/update`
 export const CDGAME_DETAIL = `${CDGAME}/detail/:id`
+
+//Game Console
+export const GAMECONSOLE = `${ADMIN}/gameconsole`
+export const GAMECONSOLE_CREATE = `${GAMECONSOLE}/create`
+export const GAMECONSOLE_UPDATE = `${GAMECONSOLE}/:id/update`
+export const GAMECONSOLE_DETAIL = `${GAMECONSOLE}/detail/:id`
+
+//Trade Mark 
+export const TRADEMARK = `${ADMIN}/trademark`
+export const TRADEMARK_CREATE = `${TRADEMARK}/create`
+export const TRADEMARK_UPDATE = `${TRADEMARK}/:id/update`
+export const TRADEMARK_DETAIL = `${TRADEMARK}/detail/:id`
+
+//Gift Card
+export const GIFTCARD = `${ADMIN}/giftcard`
+export const GIFTCARD_CREATE = `${GIFTCARD}/create`
+export const GIFTCARD_UPDATE = `${GIFTCARD}/:id/update`
+export const GIFTCARD_DETAIL = `${GIFTCARD}/detail/:id`

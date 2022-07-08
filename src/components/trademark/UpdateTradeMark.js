@@ -4,40 +4,39 @@ import React, { useEffect } from 'react'
 import { useQueryClient } from 'react-query'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { ADVERTISEMENT } from '../../config/path'
-import useAdvertisementDetailQuery from '../../hooks/useAdvertisementDetailQuery'
-import useUpdateAdvertisement from '../../hooks/useAdvertisementUpdate'
+import { TRADEMARK } from '../../config/path'
+import useTradeMarkDetailQuery from '../../hooks/useTradeMarkDetailQuery'
+import useUpdateTradeMark from '../../hooks/useTradeMarkUpdate'
 import PrivateLayout from '../../layout/PrivateLayout'
 
-const UpdateAdvertisement = () => {
+const UpdateTradeMark = () => {
   const [form] = Form.useForm()
   const history = useHistory()
   const location = useLocation()
-  const id_advertisement = location.pathname.split('/')[3]
+  const id_trademark = location.pathname.split('/')[3]
   const queryClient = useQueryClient()
-  const { data: advertise } = useAdvertisementDetailQuery(id_advertisement)
-  const updateAdvertise = useUpdateAdvertisement()
-  console.log(advertise)
+  const { data: trademark } = useTradeMarkDetailQuery(id_trademark)
+  const updateTradeMark = useUpdateTradeMark()
+  console.log(trademark)
 
   useEffect(() => {
     form.setFieldsValue({
-      name: advertise?.name,
-      image: advertise?.image,
+      name: trademark?.name,
+      image: trademark?.image,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [advertise])
+  }, [trademark])
 
-  const onCreateAdvertisement = (value) => {
+  const onCreateTradeMark = (value) => {
     value.updated_at = moment().format('YYYY-MM-DD HH:mm:ss')
-    value.id = id_advertisement
+    value.id = Number(id_trademark)
 
-    updateAdvertise.mutate(value, {
+    updateTradeMark.mutate(value, {
       onSuccess: (data) => {
         if (data.status === 1) {
-          queryClient.invalidateQueries(['advertisement', 'advertisement_detail'])
+          queryClient.invalidateQueries(['trademark', 'trademark_detail'])
           toast.success(data?.message)
           setTimeout(() => {
-            history.push(ADVERTISEMENT)
+            history.push(TRADEMARK)
           }, 1000)
         }
       },
@@ -49,15 +48,15 @@ const UpdateAdvertisement = () => {
 
   return (
     <PrivateLayout>
-      <div className="advertise-create">
-        <div className="advertise-create__title">Update Advertisement</div>
-        <Form form={form} onFinish={onCreateAdvertisement} layout="vertical" className="advertise-create__form">
+      <div className="trademark-create">
+        <div className="trademark-create__title">Update Trade Mark</div>
+        <Form form={form} onFinish={onCreateTradeMark} layout="vertical" className="trademark-create__form">
           <Form.Item
             label="Name"
             name="name"
-            rules={[{ required: true, message: 'Please input name of advertisement!' }]}
+            rules={[{ required: true, message: 'Please input name of trademarkment!' }]}
           >
-            <Input placeholder="Name of advertisement" />
+            <Input placeholder="Name of trademarkment" />
           </Form.Item>
           <Form.Item label="Image" name="image" rules={[{ required: true, message: 'Please input image!' }]}>
             <Input placeholder="Image url" />
@@ -69,4 +68,4 @@ const UpdateAdvertisement = () => {
   )
 }
 
-export default UpdateAdvertisement
+export default UpdateTradeMark

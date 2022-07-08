@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory, useLocation } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
-import '../../style/Advertisement.css'
-import { API_CDGAME_STORE } from '../../config/endpointAPi'
+import '../../style/GiftCard.css'
+import { API_GIFTCARD_STORE } from '../../config/endpointAPi'
 import { postAxios } from '../../Http'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
-import { CDGAME } from '../../config/path'
+import { GIFTCARD } from '../../config/path'
 import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
 import QueryString from 'qs'
 import { Option } from 'antd/lib/mentions'
@@ -21,29 +21,32 @@ const updateDefault = {
   fileList: [],
 }
 
-const CreateCDGame = () => {
+const CreateGiftCard = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
   const location = useLocation()
-  const id_trademark = location.pathname.split('/')[4]
+  const id_trademark = location.pathname.split('/')[3]
+  console.log(location.pathname)
   const searchUrl = QueryString.parse(location.search.substr(1))
+
+  console.log(id_trademark)
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
 
   const { data: trademark } = useTradeMarkQuery([limit, keyword, page])
-  console.log(trademark)
   const trademark_list = trademark?.data
-  const onCreateCDGame = (value) => {
+  console.log(trademark_list)
+  const onCreateGiftCard = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
 
-    postAxios(API_CDGAME_STORE, value)
+    postAxios(API_GIFTCARD_STORE, value)
       .then((res) => {
         if (res.status === 1) {
-          queryClient.invalidateQueries(['cdgame'])
+          queryClient.invalidateQueries(['giftcard'])
           toast.success(res?.message)
           setTimeout(() => {
-            history.push(CDGAME)
+            history.push(GIFTCARD)
           }, 1000)
         }
       })
@@ -54,11 +57,11 @@ const CreateCDGame = () => {
 
   return (
     <PrivateLayout>
-      <div className="cdgame-create">
-        <div className="cdgame-create__title">Create CD_Game</div>
-        <Form onFinish={onCreateCDGame} layout="vertical" className="cdgame-create__form">
-          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of CD_Games!' }]}>
-            <Input placeholder="Name of CD_Games" />
+      <div className="giftcard-create">
+        <div className="giftcard-create__title">Create Gift Card</div>
+        <Form onFinish={onCreateGiftCard} layout="vertical" className="giftcard-create__form">
+          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of Gift Card!' }]}>
+            <Input placeholder="Name of Gift Card" />
           </Form.Item>
           <Form.Item
             label="Quantity"
@@ -84,7 +87,7 @@ const CreateCDGame = () => {
           <Form.Item
             label="TradeMark"
             name="trademark_id"
-            rules={[{ required: true, message: 'Please input the discount!' }]}
+            rules={[{ required: true, message: 'Please input the trademark!' }]}
           >
             <Select placeholder="Please select trade mark">
               {trademark_list?.map((mark) => {
@@ -103,4 +106,4 @@ const CreateCDGame = () => {
   )
 }
 
-export default CreateCDGame
+export default CreateGiftCard

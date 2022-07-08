@@ -12,7 +12,6 @@ const AdvertisementDetail = () => {
     <PrivateLayout>
       <div>
         <img src={advertise?.image} alt={advertise} />
-        
       </div>
     </PrivateLayout>
   )

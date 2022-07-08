@@ -1,0 +1,76 @@
+.giftcard .giftcard-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+  }
+  
+  .giftcard .giftcard-content .giftcard-content-title {
+    font-size: 24px;
+  }
+  .giftcard .giftcard-three__dot {
+    cursor: pointer;
+  }
+  
+  .giftcard-popover .giftcard-popover__content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .giftcard-popover .giftcard-popover__content:hover {
+    cursor: pointer;
+    background-color: bisque;
+  }
+  
+  .giftcard__create_btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .giftcard-create .giftcard-create__title {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  .giftcard-create .giftcard-create__form {
+    width: 50%;
+    margin: auto;
+  }
+  
+  .giftcard-detail__container{
+    width:80%;
+    display:flex;
+    padding:12px;
+  }
+  .giftcard-detail__title{
+    font-family: 'Futurab';
+    font-weight: normal;
+    font-size: 3em;
+    color: #e00d7a;
+    line-height: 50px;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+    text-shadow: 4px 4px 0 rgb(0 0 0 / 10%);
+    
+    font-weight: 800;
+  }
+  .giftcard-detail__image{
+    width:50%;
+
+  }
+  .giftcard-detail__image img{
+    width:100%;
+
+  }
+  .giftcard-detail__info{
+    width:50%;
+    text-align:left;
+    padding-left:80px;
+  }
+  .giftcard-detail__content{
+    font-size:1.5em;
+    padding:8px;
+  }
