@@ -23,3 +23,17 @@ export const API_TRADEMARK_DELETE = `${API_TRADEMARK}/delete/:id`
 export const API_TRADEMARK_STORE = `${API_TRADEMARK}/store`
 export const API_TRADEMARK_UPDATE = `${API_TRADEMARK}/update`
 export const API_TRADEMARK_DETAIL = `${API_TRADEMARK}/detail/:id`
+
+//Api Game Console
+export const API_CONSOLE = `${BASE_API}/api/game_consoles`
+export const API_CONSOLE_DELETE = `${API_CONSOLE}/delete/:id`
+export const API_CONSOLE_STORE = `${API_CONSOLE}/store`
+export const API_CONSOLE_UPDATE = `${API_CONSOLE}/update`
+export const API_CONSOLE_DETAIL = `${API_CONSOLE}/detail/:id`
+
+//Api Trademark
+export const API_GIFTCARD = `${BASE_API}/api/gift_card`
+export const API_GIFTCARD_DELETE = `${API_GIFTCARD}/delete/:id`
+export const API_GIFTCARD_STORE = `${API_GIFTCARD}/store`
+export const API_GIFTCARD_UPDATE = `${API_GIFTCARD}/update`
+export const API_GIFTCARD_DETAIL = `${API_GIFTCARD}/detail/:id`

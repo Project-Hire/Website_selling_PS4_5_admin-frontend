@@ -4,9 +4,12 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ADVERTISEMENT, CDGAME, HOME } from '../config/path'
+import { ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
+import { FaGamepad } from 'react-icons/fa'
+import { BsCreditCard2BackFill } from 'react-icons/bs'
+import { FaTrademark } from 'react-icons/fa'
 import { RiAdvertisementLine } from 'react-icons/ri'
 import { GiCompactDisc } from 'react-icons/gi'
 
@@ -27,7 +30,7 @@ const PrivateLayout = ({ children }) => {
     {
       key: ADVERTISEMENT,
       icon: <RiAdvertisementLine />,
-      content: 'Advertisement',
+      content: 'Advertisements',
       path: ADVERTISEMENT,
     },
     {
@@ -36,20 +39,39 @@ const PrivateLayout = ({ children }) => {
       content: 'CD Games',
       path: CDGAME,
     },
+    {
+      key: GAMECONSOLE,
+      icon: <FaGamepad />,
+      content: 'Game Console',
+      path: GAMECONSOLE,
+    },
+    {
+      key: TRADEMARK,
+      icon: <FaTrademark />,
+      content: 'Trade Mark',
+      path: TRADEMARK,
+    },
+    {
+      key: GIFTCARD,
+      icon: <BsCreditCard2BackFill />,
+      content: 'Gift Card',
+      path: GIFTCARD,
+    },
   ]
 
   return (
     <PrivateRoute>
       <div className="layout">
         <Layout style={{ minHeight: '100vh', textAlign: 'center' }}>
-          <Sider collapsible 
-                      breakpoint="lg"
-                      collapsedWidth="0"
-                      onBreakpoint={(broken) => {
-                      }}
-                      onCollapse={(collapsed, type) => {
-                        console.log(collapsed, type)
-                      }}>
+          <Sider
+            collapsible
+            breakpoint="lg"
+            collapsedWidth="0"
+            onBreakpoint={(broken) => {}}
+            onCollapse={(collapsed, type) => {
+              console.log(collapsed, type)
+            }}
+          >
             <div className="logo">
               <img style={{ width: '100%' }} className="img" src={Logo} alt="logo" />
             </div>

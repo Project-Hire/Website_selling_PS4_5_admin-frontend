@@ -1,0 +1,76 @@
+.gameconsole .gameconsole-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+  }
+  
+  .gameconsole .gameconsole-content .gameconsole-content-title {
+    font-size: 24px;
+  }
+  .gameconsole .gameconsole-three__dot {
+    cursor: pointer;
+  }
+  
+  .gameconsole-popover .gameconsole-popover__content {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+  }
+  
+  .gameconsole-popover .gameconsole-popover__content:hover {
+    cursor: pointer;
+    background-color: bisque;
+  }
+  
+  .gameconsole__create_btn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .gameconsole-create .gameconsole-create__title {
+    font-size: 30px;
+    font-weight: 600;
+  }
+  
+  .gameconsole-create .gameconsole-create__form {
+    width: 50%;
+    margin: auto;
+  }
+  
+  .gameconsole-detail__container{
+    width:80%;
+    display:flex;
+    padding:12px;
+  }
+  .gameconsole-detail__title{
+    font-family: 'Futurab';
+    font-weight: normal;
+    font-size: 3em;
+    color: #e00d7a;
+    line-height: 50px;
+    text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
+    text-shadow: 4px 4px 0 rgb(0 0 0 / 10%);
+    
+    font-weight: 800;
+  }
+  .gameconsole-detail__image{
+    width:50%;
+
+  }
+  .gameconsole-detail__image img{
+    width:100%;
+
+  }
+  .gameconsole-detail__info{
+    width:50%;
+    text-align:left;
+    padding-left:80px;
+  }
+  .gameconsole-detail__content{
+    font-size:1.5em;
+    padding:8px;
+  }

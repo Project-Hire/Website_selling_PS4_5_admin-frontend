@@ -1,0 +1,76 @@
+.trademark .trademark-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0px;
+}
+
+.trademark .trademark-content .trademark-content-title {
+  font-size: 24px;
+}
+.trademark .trademark-three__dot {
+  cursor: pointer;
+}
+
+.trademark-popover .trademark-popover__content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px;
+}
+
+.trademark-popover .trademark-popover__content:hover {
+  cursor: pointer;
+  background-color: bisque;
+}
+
+.trademark__create_btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.trademark-create .trademark-create__title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.trademark-create .trademark-create__form {
+  width: 50%;
+  margin: auto;
+}
+
+.trademark-detail__container{
+  width:80%;
+  display:flex;
+  padding:12px;
+}
+.trademark-detail__title{
+  font-family: 'Futurab';
+  font-weight: normal;
+  font-size: 3em;
+  color: #e00d7a;
+  line-height: 50px;
+  text-transform: uppercase;
+  display: inline-block;
+  vertical-align: middle;
+  text-shadow: 4px 4px 0 rgb(0 0 0 / 10%);
+  
+  font-weight: 800;
+}
+.trademark-detail__image{
+  width:50%;
+
+}
+.trademark-detail__image img{
+  width:100%;
+
+}
+.trademark-detail__info{
+  width:50%;
+  text-align:left;
+  padding-left:80px;
+}
+.trademark-detail__content{
+  font-size:1.5em;
+  padding:8px;
+}

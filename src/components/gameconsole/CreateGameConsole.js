@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory, useLocation } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
-import '../../style/Advertisement.css'
-import { API_CDGAME_STORE } from '../../config/endpointAPi'
+import '../../style/GameConsole.css'
+import { API_CONSOLE_STORE } from '../../config/endpointAPi'
 import { postAxios } from '../../Http'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
-import { CDGAME } from '../../config/path'
+import { GAMECONSOLE } from '../../config/path'
 import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
 import QueryString from 'qs'
 import { Option } from 'antd/lib/mentions'
@@ -21,29 +21,32 @@ const updateDefault = {
   fileList: [],
 }
 
-const CreateCDGame = () => {
+const CreateGameConsole = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
   const location = useLocation()
-  const id_trademark = location.pathname.split('/')[4]
+  const id_trademark = location.pathname.split('/')[3]
+  console.log(location.pathname)
   const searchUrl = QueryString.parse(location.search.substr(1))
+
+  console.log(id_trademark)
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
 
   const { data: trademark } = useTradeMarkQuery([limit, keyword, page])
-  console.log(trademark)
+  console.log(trademark?.data)
   const trademark_list = trademark?.data
-  const onCreateCDGame = (value) => {
+  const onCreateGameConsole = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
 
-    postAxios(API_CDGAME_STORE, value)
+    postAxios(API_CONSOLE_STORE, value)
       .then((res) => {
         if (res.status === 1) {
-          queryClient.invalidateQueries(['cdgame'])
+          queryClient.invalidateQueries(['gameconsole'])
           toast.success(res?.message)
           setTimeout(() => {
-            history.push(CDGAME)
+            history.push(GAMECONSOLE)
           }, 1000)
         }
       })
@@ -54,11 +57,15 @@ const CreateCDGame = () => {
 
   return (
     <PrivateLayout>
-      <div className="cdgame-create">
-        <div className="cdgame-create__title">Create CD_Game</div>
-        <Form onFinish={onCreateCDGame} layout="vertical" className="cdgame-create__form">
-          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of CD_Games!' }]}>
-            <Input placeholder="Name of CD_Games" />
+      <div className="gameconsole-create">
+        <div className="gameconsole-create__title">Create Game Console</div>
+        <Form onFinish={onCreateGameConsole} layout="vertical" className="gameconsole-create__form">
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: 'Please input name of Game Console!' }]}
+          >
+            <Input placeholder="Name of Game Console" />
           </Form.Item>
           <Form.Item
             label="Quantity"
@@ -103,4 +110,4 @@ const CreateCDGame = () => {
   )
 }
 
-export default CreateCDGame
+export default CreateGameConsole
