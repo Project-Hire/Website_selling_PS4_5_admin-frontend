@@ -21,6 +21,10 @@ import {
   GIFTCARD_CREATE,
   GIFTCARD_DETAIL,
   GIFTCARD_UPDATE,
+  ACCESSORY,
+  ACCESSORY_CREATE,
+  ACCESSORY_UPDATE,
+  ACCESSORY_DETAIL,
 } from '../config/path'
 
 const routes = [
@@ -38,6 +42,8 @@ const routes = [
     component: import('../components/home/index'),
     restricted: false,
   },
+
+    //Advertisement path
   {
     path: ADVERTISEMENT,
     exact: true,
@@ -66,6 +72,8 @@ const routes = [
     component: import('../components/advertisement/AdvertisementDetail'),
     restricted: false,
   },
+
+    //CD Game path
   {
     path: CDGAME,
     exact: true,
@@ -94,6 +102,8 @@ const routes = [
     component: import('../components/cdgame/CDGameDetail'),
     restricted: false,
   },
+
+    //Gameconsole path
   {
     path: GAMECONSOLE,
     exact: true,
@@ -122,6 +132,8 @@ const routes = [
     component: import('../components/gameconsole/GameConsoleDetail'),
     restricted: false,
   },
+
+    //Trademark path
   {
     path: TRADEMARK,
     exact: true,
@@ -150,6 +162,8 @@ const routes = [
     component: import('../components/trademark/TradeMarkDetail'),
     restricted: false,
   },
+
+    //Gift card path
   {
     path: GIFTCARD,
     exact: true,
@@ -176,6 +190,36 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/giftcard/GiftCardDetail'),
+    restricted: false,
+  },
+
+  //Accessory path
+  {
+    path: ACCESSORY,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/accessory/index'),
+    restricted: false,
+  },
+  {
+    path: ACCESSORY_CREATE,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/accessory/CreateAccessory'),
+    restricted: false,
+  },
+  {
+    path: ACCESSORY_UPDATE,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/accessory/UpdateAccessory'),
+    restricted: false,
+  },
+  {
+    path: ACCESSORY_DETAIL,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/accessory/AccessoryDetail'),
     restricted: false,
   },
 ]

@@ -51,9 +51,11 @@ const GameConsole = () => {
       onCell,
     },
     {
-      title: 'Trade Maker ID',
-      dataIndex: 'trademark_id',
+      title: 'Trade Mark',
       key: 'trademark_id',
+      render: (gameconsole) => {
+        return <>{gameconsole?.trademark?.name}</>
+      },
       onCell,
     },
     {
@@ -76,8 +78,15 @@ const GameConsole = () => {
     },
     {
       title: 'Image',
-      dataIndex: 'image',
       key: 'image',
+      render: (gameconsole) => {
+        return (
+          <div className="gameconsole-list__img">
+            <img src={gameconsole.image} />
+          </div>
+        )
+      },
+
       onCell,
     },
     {

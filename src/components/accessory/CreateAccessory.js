@@ -3,25 +3,18 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useHistory, useLocation } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
-import '../../style/Advertisement.css'
-import { API_CDGAME_STORE } from '../../config/endpointAPi'
+import '../../style/Accessory.css'
+import { API_ACCESSORY_STORE } from '../../config/endpointAPi'
 import { postAxios } from '../../Http'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
-import { CDGAME } from '../../config/path'
+import { ACCESSORY } from '../../config/path'
 import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
 import QueryString from 'qs'
 import { Option } from 'antd/lib/mentions'
 
-const updateDefault = {
-  previewVisible: false,
-  previewImage: '',
-  previewTitle: '',
-  isFileValidFormat: true,
-  fileList: [],
-}
 
-const CreateCDGame = () => {
+const CreateAccessory = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
   const location = useLocation()
@@ -34,16 +27,16 @@ const CreateCDGame = () => {
   const { data: trademark } = useTradeMarkQuery([limit, keyword, page])
   console.log(trademark)
   const trademark_list = trademark?.data
-  const onCreateCDGame = (value) => {
+  const onCreateAccessory = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm')
 
-    postAxios(API_CDGAME_STORE, value)
+    postAxios(API_ACCESSORY_STORE, value)
       .then((res) => {
         if (res.status === 1) {
-          queryClient.invalidateQueries(['cdgame'])
+          queryClient.invalidateQueries(['accessory'])
           toast.success(res?.message)
           setTimeout(() => {
-            history.push(CDGAME)
+            history.push(ACCESSORY)
           }, 1000)
         }
       })
@@ -54,11 +47,11 @@ const CreateCDGame = () => {
 
   return (
     <PrivateLayout>
-      <div className="cdgame-create">
-        <div className="cdgame-create__title">Create CD_Game</div>
-        <Form onFinish={onCreateCDGame} layout="vertical" className="cdgame-create__form">
+      <div className="accessory-create">
+        <div className="accessory-create__title">Create Accessory</div>
+        <Form onFinish={onCreateAccessory} layout="vertical" className="accessory-create__form">
           <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of CD_Games!' }]}>
-            <Input placeholder="Name of CD_Games" />
+            <Input placeholder="Name of Accessory" />
           </Form.Item>
           <Form.Item
             label="Quantity"
@@ -103,4 +96,4 @@ const CreateCDGame = () => {
   )
 }
 
-export default CreateCDGame
+export default CreateAccessory

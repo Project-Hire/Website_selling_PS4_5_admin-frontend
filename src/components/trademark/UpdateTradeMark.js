@@ -26,7 +26,7 @@ const UpdateTradeMark = () => {
     })
   }, [trademark])
 
-  const onCreateTradeMark = (value) => {
+  const onUpdateTradeMark = (value) => {
     value.updated_at = moment().format('YYYY-MM-DD HH:mm:ss')
     value.id = Number(id_trademark)
 
@@ -50,7 +50,7 @@ const UpdateTradeMark = () => {
     <PrivateLayout>
       <div className="trademark-create">
         <div className="trademark-create__title">Update Trade Mark</div>
-        <Form form={form} onFinish={onCreateTradeMark} layout="vertical" className="trademark-create__form">
+        <Form form={form} onFinish={onUpdateTradeMark} layout="vertical" className="trademark-create__form">
           <Form.Item
             label="Name"
             name="name"

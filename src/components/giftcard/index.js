@@ -51,9 +51,11 @@ const GiftCard = () => {
       onCell,
     },
     {
-      title: 'Trade Maker ID',
-      dataIndex: 'trademark_id',
+      title: 'Trade Mark',
       key: 'trademark_id',
+      render: (giftcard) => {
+        return <>{giftcard?.trademark?.name}</>
+      },
       onCell,
     },
     {
@@ -76,8 +78,15 @@ const GiftCard = () => {
     },
     {
       title: 'Image',
-      dataIndex: 'image',
       key: 'image',
+      render: (giftcard) => {
+        return (
+          <div className="giftcard-list__img">
+            <img src={giftcard.image} />
+          </div>
+        )
+      },
+
       onCell,
     },
     {

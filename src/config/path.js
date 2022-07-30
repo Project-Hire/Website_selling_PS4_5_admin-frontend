@@ -37,3 +37,9 @@ export const GIFTCARD = `${ADMIN}/giftcard`
 export const GIFTCARD_CREATE = `${GIFTCARD}/create`
 export const GIFTCARD_UPDATE = `${GIFTCARD}/:id/update`
 export const GIFTCARD_DETAIL = `${GIFTCARD}/detail/:id`
+
+//Accessory
+export const ACCESSORY = `${ADMIN}/accessory`
+export const ACCESSORY_CREATE = `${ACCESSORY}/create`
+export const ACCESSORY_UPDATE = `${ACCESSORY}/:id/update`
+export const ACCESSORY_DETAIL = `${ACCESSORY}/detail/:id`

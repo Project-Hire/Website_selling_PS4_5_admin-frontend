@@ -4,7 +4,14 @@
     align-items: center;
     padding: 20px 0px;
   }
-  
+  .gameconsole-list__img {
+    margin:auto;
+  }
+  .gameconsole-list__img img{
+    width:50%;
+    display:block;
+    margin:auto;
+  }
   .gameconsole .gameconsole-content .gameconsole-content-title {
     font-size: 24px;
   }

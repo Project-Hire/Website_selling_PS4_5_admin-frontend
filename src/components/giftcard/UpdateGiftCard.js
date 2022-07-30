@@ -39,7 +39,7 @@ const UpdateGiftCard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [giftcard])
 
-  const onCreateGiftCard = (value) => {
+  const onUpdateGiftCard = (value) => {
     value.updated_at = moment().format('YYYY-MM-DD HH:mm:ss')
     value.id = id_giftcard
 
@@ -63,7 +63,7 @@ const UpdateGiftCard = () => {
     <PrivateLayout>
       <div className="giftcard-create">
         <div className="giftcard-create__title">Update Gift Card</div>
-        <Form form={form} onFinish={onCreateGiftCard} layout="vertical" className="giftcard-create__form">
+        <Form form={form} onFinish={onUpdateGiftCard} layout="vertical" className="giftcard-create__form">
           <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of giftcard!' }]}>
             <Input placeholder="Name of giftcard" />
           </Form.Item>

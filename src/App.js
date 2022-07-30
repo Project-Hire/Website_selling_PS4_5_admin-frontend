@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import AppRouter from './routes'
 import 'antd/dist/antd.css'
 import 'react-toastify/dist/ReactToastify.css'
+import './index.css'
 
 function App() {
   const queryClient = new QueryClient()
