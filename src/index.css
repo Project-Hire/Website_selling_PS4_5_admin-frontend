@@ -9,3 +9,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+.ant-table-thead > tr > th{
+  text-align:center !important;
+}

@@ -41,7 +41,7 @@ const UpdateCDGame = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cdgame])
 
-  const onCreateCDGame = (value) => {
+  const onUpdateCDGame = (value) => {
     value.updated_at = moment().format('YYYY-MM-DD HH:mm:ss')
     value.id = Number(id_cdgame)
 
@@ -65,7 +65,7 @@ const UpdateCDGame = () => {
     <PrivateLayout>
       <div className="cdgame-create">
         <div className="cdgame-create__title">Update CD GAME</div>
-        <Form form={form} onFinish={onCreateCDGame} layout="vertical" className="cdgame-create__form">
+        <Form form={form} onFinish={onUpdateCDGame} layout="vertical" className="cdgame-create__form">
           <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of cd game!' }]}>
             <Input placeholder="Name of CD Game" />
           </Form.Item>

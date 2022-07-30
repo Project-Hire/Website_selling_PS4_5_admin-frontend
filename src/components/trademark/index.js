@@ -52,8 +52,15 @@ const TradeMark = () => {
     },
     {
       title: 'Image',
-      dataIndex: 'image',
       key: 'image',
+      render: (trademark) => {
+        return (
+          <div className="trademark-list__img">
+            <img src={trademark.image} />
+          </div>
+        )
+      },
+
       onCell,
     },
     {

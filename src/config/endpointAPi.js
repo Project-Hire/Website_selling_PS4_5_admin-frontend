@@ -37,3 +37,10 @@ export const API_GIFTCARD_DELETE = `${API_GIFTCARD}/delete/:id`
 export const API_GIFTCARD_STORE = `${API_GIFTCARD}/store`
 export const API_GIFTCARD_UPDATE = `${API_GIFTCARD}/update`
 export const API_GIFTCARD_DETAIL = `${API_GIFTCARD}/detail/:id`
+
+//Api Trademark
+export const API_ACCESSORY = `${BASE_API}/api/accessory`
+export const API_ACCESSORY_DELETE = `${API_ACCESSORY}/delete/:id`
+export const API_ACCESSORY_STORE = `${API_ACCESSORY}/store`
+export const API_ACCESSORY_UPDATE = `${API_ACCESSORY}/update`
+export const API_ACCESSORY_DETAIL = `${API_ACCESSORY}/detail/:id`

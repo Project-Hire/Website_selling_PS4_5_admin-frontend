@@ -1,57 +1,57 @@
-.cdgame .cdgame-content {
+.accessory .accessory-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 0px;
 }
-.cdgame-list__img {
+.accessory-list__img {
   margin: auto;
 }
-.cdgame-list__img img {
+.accessory-list__img img {
   width: 50%;
   display: block;
   margin: auto;
 }
-.cdgame .cdgame-content .cdgame-content-title {
+.accessory .accessory-content .accessory-content-title {
   font-size: 24px;
 }
-.cdgame .cdgame-three__dot {
+.accessory .accessory-three__dot {
   cursor: pointer;
 }
 
-.cdgame-popover .cdgame-popover__content {
+.accessory-popover .accessory-popover__content {
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 10px;
 }
 
-.cdgame-popover .cdgame-popover__content:hover {
+.accessory-popover .accessory-popover__content:hover {
   cursor: pointer;
   background-color: bisque;
 }
 
-.cdgame__create_btn {
+.accessory__create_btn {
   display: flex;
   justify-content: flex-end;
 }
 
-.cdgame-create .cdgame-create__title {
+.accessory-create .accessory-create__title {
   font-size: 30px;
   font-weight: 600;
 }
 
-.cdgame-create .cdgame-create__form {
+.accessory-create .accessory-create__form {
   width: 50%;
   margin: auto;
 }
 
-.cdgame-detail__container {
+.accessory-detail__container {
   width: 80%;
   display: flex;
   padding: 12px;
 }
-.cdgame-detail__title {
+.accessory-detail__title {
   font-family: 'Futurab';
   font-weight: normal;
   font-size: 3em;
@@ -64,18 +64,18 @@
 
   font-weight: 800;
 }
-.cdgame-detail__image {
+.accessory-detail__image {
   width: 50%;
 }
-.cdgame-detail__image img {
+.accessory-detail__image img {
   width: 100%;
 }
-.cdgame-detail__info {
+.accessory-detail__info {
   width: 50%;
   text-align: left;
   padding-left: 80px;
 }
-.cdgame-detail__content {
+.accessory-detail__content {
   font-size: 1.5em;
   padding: 8px;
 }

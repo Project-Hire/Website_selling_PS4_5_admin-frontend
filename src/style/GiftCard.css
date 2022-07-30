@@ -4,7 +4,14 @@
     align-items: center;
     padding: 20px 0px;
   }
-  
+  .giftcard-list__img {
+    margin:auto;
+  }
+  .giftcard-list__img img{
+    width:50%;
+    display:block;
+    margin:auto;
+  }
   .giftcard .giftcard-content .giftcard-content-title {
     font-size: 24px;
   }

@@ -1,57 +1,57 @@
 import { Button, Form, Input, Select } from 'antd'
 import { Option } from 'antd/lib/mentions'
 import moment from 'moment'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useQueryClient } from 'react-query'
 import { useHistory, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { GAMECONSOLE } from '../../config/path'
-import useGameConsoleDetailQuery from '../../hooks/useGameConsoleDetailQuery'
-import useUpdateGameConsole from '../../hooks/useGameConsoleUpdate'
+import { ACCESSORY } from '../../config/path'
+import useAccessoryDetailQuery from '../../hooks/useAccessoryDetailQuery'
+import useAccessoryUpdate from '../../hooks/useAccessoryUpdate'
 import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
 import QueryString from 'qs'
 import PrivateLayout from '../../layout/PrivateLayout'
+import { useState } from 'react'
 
-const UpdateGameConsole = () => {
+const UpdateAccessory = () => {
   const [form] = Form.useForm()
   const history = useHistory()
   const location = useLocation()
-  const id_gameconsole = location.pathname.split('/')[3]
+  const id_accessory = location.pathname.split('/')[3]
   const queryClient = useQueryClient()
-  const { data: gameconsole } = useGameConsoleDetailQuery(id_gameconsole)
-  const updateGameConsole = useUpdateGameConsole()
+  const { data: accessory } = useAccessoryDetailQuery(id_accessory)
+  const updateAccessory = useAccessoryUpdate()
   const searchUrl = QueryString.parse(location.search.substr(1))
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
-
   const { data: trademark } = useTradeMarkQuery([limit, keyword, page])
+  console.log(trademark)
   const trademark_list = trademark?.data
 
   useEffect(() => {
     form.setFieldsValue({
-      name: gameconsole?.name,
-      image: gameconsole?.image,
-      quantity: gameconsole?.quantity,
-      price: gameconsole?.price,
-      viewer: gameconsole?.viewer,
-      discount: gameconsole?.discount,
-      trademark_id: gameconsole?.trademark_id,
+      name: accessory?.name,
+      quantity: accessory?.quantity,
+      discount: accessory?.discount,
+      price: accessory?.price,
+      image: accessory?.image,
+      trademark_id: accessory?.trademark_id,
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameconsole])
+  }, [accessory])
 
-  const onUpdateGameConsole = (value) => {
+  const onUpdateAccessory = (value) => {
     value.updated_at = moment().format('YYYY-MM-DD HH:mm:ss')
-    value.id = id_gameconsole
+    value.id = Number(id_accessory)
 
-    updateGameConsole.mutate(value, {
+    updateAccessory.mutate(value, {
       onSuccess: (data) => {
         if (data.status === 1) {
-          queryClient.invalidateQueries(['gameconsole', 'gameconsole_detail'])
+          queryClient.invalidateQueries(['accessory', 'accessory_detail'])
           toast.success(data?.message)
           setTimeout(() => {
-            history.push(GAMECONSOLE)
+            history.push(ACCESSORY)
           }, 1000)
         }
       },
@@ -63,38 +63,29 @@ const UpdateGameConsole = () => {
 
   return (
     <PrivateLayout>
-      <div className="gameconsole-create">
-        <div className="gameconsole-create__title">Update Game Console</div>
-        <Form form={form} onFinish={onUpdateGameConsole} layout="vertical" className="gameconsole-create__form">
-          <Form.Item
-            label="Name"
-            name="name"
-            rules={[{ required: true, message: 'Please input name of gameconsole!' }]}
-          >
-            <Input placeholder="Name of gameconsole" />
+      <div className="accessory-create">
+        <div className="accessory-create__title">Update Accessory</div>
+        <Form form={form} onFinish={onUpdateAccessory} layout="vertical" className="accessory-create__form">
+          <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input name of cd game!' }]}>
+            <Input placeholder="Name of Accessory" />
           </Form.Item>
           <Form.Item
             label="Quantity"
             name="quantity"
-            rules={[{ required: true, message: 'Please input the quantity of game console!' }]}
+            rules={[{ required: true, message: 'Please input name of quantity!' }]}
           >
-            <Input placeholder="Quantity of gameconsole" />
-          </Form.Item>
-          <Form.Item
-            label="Price"
-            name="price"
-            rules={[{ required: true, message: 'Please input price of gameconsole!' }]}
-          >
-            <Input placeholder="Price of gameconsole" />
+            <Input placeholder="Quantity of Accessory" />
           </Form.Item>
           <Form.Item
             label="Discount"
             name="discount"
-            rules={[{ required: true, message: 'Please input discount of gameconsole!' }]}
+            rules={[{ required: true, message: 'Please input discount of Accessory!' }]}
           >
-            <Input placeholder="Discount of gameconsole" />
+            <Input placeholder="Discount of Accessory" />
           </Form.Item>
-
+          <Form.Item label="Price" name="price" rules={[{ required: true, message: 'Please input price of Accessory!' }]}>
+            <Input placeholder="Price of Accessory" />
+          </Form.Item>
           <Form.Item
             label="TradeMark"
             name="trademark_id"
@@ -107,7 +98,7 @@ const UpdateGameConsole = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item label="Image" name="image" rules={[{ required: true, message: 'Please input image!' }]}>
+          <Form.Item label="Image URL" name="image" rules={[{ required: true, message: 'Please input image!' }]}>
             <Input placeholder="Image url" />
           </Form.Item>
           <Button htmlType="submit">Update</Button>
@@ -117,4 +108,4 @@ const UpdateGameConsole = () => {
   )
 }
 
-export default UpdateGameConsole
+export default UpdateAccessory

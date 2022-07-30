@@ -4,7 +4,7 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
+import { ACCESSORY, ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
 import { Link, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FaGamepad } from 'react-icons/fa'
@@ -12,6 +12,7 @@ import { BsCreditCard2BackFill } from 'react-icons/bs'
 import { FaTrademark } from 'react-icons/fa'
 import { RiAdvertisementLine } from 'react-icons/ri'
 import { GiCompactDisc } from 'react-icons/gi'
+import { AiFillCustomerService } from 'react-icons/ai'
 
 const { SubMenu } = Menu
 
@@ -57,6 +58,13 @@ const PrivateLayout = ({ children }) => {
       content: 'Gift Card',
       path: GIFTCARD,
     },
+    {
+      key: ACCESSORY,
+      icon: <AiFillCustomerService />,
+      content: 'Accessory',
+      path: ACCESSORY,
+    },
+
   ]
 
   return (
