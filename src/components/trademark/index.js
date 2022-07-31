@@ -35,20 +35,12 @@ const TradeMark = () => {
   const data = trademark?.data || []
   console.log(data)
 
-  const onCell = (record) => {
-    return {
-      onClick: () => {
-        history.push(bindParams(TRADEMARK_DETAIL, { id: record.id }))
-      },
-    }
-  }
 
   const column = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      onCell,
     },
     {
       title: 'Image',
@@ -60,14 +52,11 @@ const TradeMark = () => {
           </div>
         )
       },
-
-      onCell,
     },
     {
       title: 'Created at',
       dataIndex: 'created_at',
       key: 'created_at',
-      onCell,
     },
     {
       title: '',
