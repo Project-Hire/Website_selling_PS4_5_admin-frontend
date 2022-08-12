@@ -12,6 +12,8 @@ import { GIFTCARD } from '../../config/path'
 import useTradeMarkQuery from '../../hooks/useTradeMarkQuery'
 import QueryString from 'qs'
 import { Option } from 'antd/lib/mentions'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const updateDefault = {
   previewVisible: false,
@@ -26,10 +28,8 @@ const CreateGiftCard = () => {
   const queryClient = useQueryClient()
   const location = useLocation()
   const id_trademark = location.pathname.split('/')[3]
-  console.log(location.pathname)
   const searchUrl = QueryString.parse(location.search.substr(1))
-
-  console.log(id_trademark)
+  const [description, setDesCription] = useState('')
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
@@ -39,6 +39,7 @@ const CreateGiftCard = () => {
   console.log(trademark_list)
   const onCreateGiftCard = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
+    value.description = description
 
     postAxios(API_GIFTCARD_STORE, value)
       .then((res) => {
@@ -98,7 +99,9 @@ const CreateGiftCard = () => {
           <Form.Item label="Image" name="image" rules={[{ required: true, message: 'Please input the image url!' }]}>
             <Input placeholder="Image URL" />
           </Form.Item>
-
+          <Form.Item>
+            <ReactQuill theme="snow" value={description} onChange={setDesCription} />
+          </Form.Item>
           <Button htmlType="submit">Create</Button>
         </Form>
       </div>
