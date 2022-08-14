@@ -35,6 +35,8 @@ export const TRADEMARK_UPDATE = `${TRADEMARK}/:id/update`
 export const GIFTCARD = `${ADMIN}/giftcard`
 export const GIFTCARD_CREATE = `${GIFTCARD}/create`
 export const GIFTCARD_UPDATE = `${GIFTCARD}/:id/update`
+export const GIFTCARD_DETAIL = `${GIFTCARD}/detail/:id`
+
 
 //Accessory
 export const ACCESSORY = `${ADMIN}/accessory`
