@@ -59,7 +59,7 @@ const Login = () => {
             <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
               <div className="login-btn">
                 <Button type="primary" htmlType="submit">
-                  Đăng nhập
+                  Login
                 </Button>
               </div>
             </Form.Item>

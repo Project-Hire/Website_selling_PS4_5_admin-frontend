@@ -4,8 +4,8 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ACCESSORY, ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
-import { Link, useLocation } from 'react-router-dom'
+import { ACCESSORY, ADMIN_LOGIN, ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FaGamepad } from 'react-icons/fa'
 import { BsCreditCard2BackFill } from 'react-icons/bs'
@@ -13,6 +13,11 @@ import { FaTrademark } from 'react-icons/fa'
 import { RiAdvertisementLine } from 'react-icons/ri'
 import { GiCompactDisc } from 'react-icons/gi'
 import { AiFillCustomerService } from 'react-icons/ai'
+import { API_LOGOUT } from '../config/endpointAPi'
+import { AUTH_TOKEN, USER_INFO } from '../config/const'
+import { postAxios } from '../Http'
+import { MdLogout } from 'react-icons/md'
+import { Button } from 'antd/lib/radio'
 
 const { SubMenu } = Menu
 
@@ -20,6 +25,19 @@ const PrivateLayout = ({ children }) => {
   const { pathname } = useLocation()
   const { Header, Content, Footer, Sider } = Layout
   const [slidebar, setSlidebar] = useState(false)
+  const history = useHistory()
+
+  const onLogout = () => {
+    postAxios(API_LOGOUT)
+      .then((res) => {
+        localStorage.removeItem(AUTH_TOKEN)
+        localStorage.removeItem(USER_INFO)
+        history.push(ADMIN_LOGIN)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   const MENU = [
     {
@@ -64,7 +82,6 @@ const PrivateLayout = ({ children }) => {
       content: 'Accessory',
       path: ACCESSORY,
     },
-
   ]
 
   return (
@@ -100,7 +117,10 @@ const PrivateLayout = ({ children }) => {
           <Layout className="site-layout">
             <Header className="site-layout-background" style={{ padding: 10 }}>
               <div style={{ float: 'right', fontSize: 24, cursor: 'pointer' }}>
-                {/* <MdLogout style={{ padding: 0 }} /> */}
+                <div onClick={onLogout} className="logout">
+                  <span>Log Out</span>
+                  <MdLogout style={{ padding: 0 }} />
+                </div>
               </div>
             </Header>
             <Content style={{ margin: '0 16px' }}>

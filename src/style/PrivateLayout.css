@@ -15,3 +15,19 @@
 .layout .layout-menu-select:hover {
   background-color: rgb(172, 172, 255);
 }
+.logout {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  height: 40px;
+  border-radius: 20px;
+  padding: 4px;
+  color: #fff;
+  border-color: #ff4d4f;
+  background: #ff4d4f;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+.logout span {
+  padding: 0px 8px;
+}

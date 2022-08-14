@@ -2,6 +2,7 @@ export const BASE_API = 'http://127.0.0.1:8000'
 
 //Api Auth
 export const API_LOGIN = `${BASE_API}/api/auth/login`
+export const API_LOGOUT = `${BASE_API}/api/auth/logout`
 
 //Api Advertisement
 export const API_ADVERTISEMENT = `${BASE_API}/api/advertise`
