@@ -30,13 +30,11 @@ export const GAMECONSOLE_DETAIL = `${GAMECONSOLE}/detail/:id`
 export const TRADEMARK = `${ADMIN}/trademark`
 export const TRADEMARK_CREATE = `${TRADEMARK}/create`
 export const TRADEMARK_UPDATE = `${TRADEMARK}/:id/update`
-export const TRADEMARK_DETAIL = `${TRADEMARK}/detail/:id`
 
 //Gift Card
 export const GIFTCARD = `${ADMIN}/giftcard`
 export const GIFTCARD_CREATE = `${GIFTCARD}/create`
 export const GIFTCARD_UPDATE = `${GIFTCARD}/:id/update`
-export const GIFTCARD_DETAIL = `${GIFTCARD}/detail/:id`
 
 //Accessory
 export const ACCESSORY = `${ADMIN}/accessory`
