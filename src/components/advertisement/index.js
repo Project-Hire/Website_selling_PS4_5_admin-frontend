@@ -52,8 +52,14 @@ const Advertisement = () => {
     },
     {
       title: 'Image',
-      dataIndex: 'image',
       key: 'image',
+      render: (advertise)=>{
+        return(
+          <div className='advertise-list__img'>
+            <img src={advertise.image} />
+          </div>
+        )
+      },
       onCell,
     },
     {

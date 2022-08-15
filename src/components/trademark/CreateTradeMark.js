@@ -1,5 +1,4 @@
-import { Button, Form, Input, Select } from 'antd'
-import React, { useState } from 'react'
+import { Button, Form, Input } from 'antd'
 import moment from 'moment'
 import { useHistory, useLocation } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
@@ -13,7 +12,6 @@ import { TRADEMARK } from '../../config/path'
 const CreateTradeMark = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
-  const location = useLocation()
 
   const onCreateTradeMark = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')
