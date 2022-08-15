@@ -81,3 +81,7 @@
     font-size:1.5em;
     padding:8px;
   }
+  .ql-container.ql-snow {
+    min-height: 200px;
+    height: fit-content;
+  }

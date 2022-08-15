@@ -15,19 +15,11 @@ import { Option } from 'antd/lib/mentions'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
-const updateDefault = {
-  previewVisible: false,
-  previewImage: '',
-  previewTitle: '',
-  isFileValidFormat: true,
-  fileList: [],
-}
 
 const CreateGameConsole = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
   const location = useLocation()
-  const id_trademark = location.pathname.split('/')[3]
   const searchUrl = QueryString.parse(location.search.substr(1))
   const [description, setDesCription] = useState('')
   const [limit] = useState(searchUrl?.limit || 10)

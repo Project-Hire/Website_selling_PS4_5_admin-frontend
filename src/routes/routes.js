@@ -155,13 +155,6 @@ const routes = [
     component: import('../components/trademark/UpdateTradeMark'),
     restricted: false,
   },
-  {
-    path: TRADEMARK_DETAIL,
-    exact: true,
-    isPrivate: true,
-    component: import('../components/trademark/TradeMarkDetail'),
-    restricted: false,
-  },
 
     //Gift card path
   {

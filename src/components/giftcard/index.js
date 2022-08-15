@@ -25,10 +25,8 @@ const GiftCard = () => {
   const queryClient = useQueryClient()
   const [isOpen, setIsOpen] = useState(false)
   const [isOpenPopover, setIsPopover] = useState(false)
-
   const searchUrl = QueryString.parse(location.search.substr(1))
   const [idDelete, setIdDelete] = useState(0)
-
   const [limit] = useState(searchUrl?.limit || 10)
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
