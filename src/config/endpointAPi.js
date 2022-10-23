@@ -47,4 +47,4 @@ export const API_ACCESSORY_UPDATE = `${API_ACCESSORY}/update`
 export const API_ACCESSORY_DETAIL = `${API_ACCESSORY}/detail/:id`
 
 //Api Payment
-export const API_PAYMENT_CD_GAME = `${BASE_API}/api/accessory`
+export const API_PAYMENT_CD_GAME = `${BASE_API}/api/payment_cdGame`

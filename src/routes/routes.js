@@ -67,13 +67,6 @@ const routes = [
     restricted: false,
   },
   {
-    path: PAYMENT_CD_GAME,
-    exact: true,
-    isPrivate: true,
-    component: import('../components/payment/index'),
-    restricted: false,
-  },
-  {
     path: ADVERTISEMENT_DETAIL,
     exact: true,
     isPrivate: true,
@@ -221,6 +214,13 @@ const routes = [
     exact: true,
     isPrivate: true,
     component: import('../components/accessory/AccessoryDetail'),
+    restricted: false,
+  },
+  {
+    path: PAYMENT_CD_GAME,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/paymentCdGame/index'),
     restricted: false,
   },
 ]

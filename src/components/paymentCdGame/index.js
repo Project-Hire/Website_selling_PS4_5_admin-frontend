@@ -17,9 +17,10 @@ import { bindParams } from '../../config/function'
 import { toast } from 'react-toastify'
 import CustomModal from '../../common/CustomModal'
 import { ModalDeleteItem } from '../../widgets/ModalDeleteItem'
+import usePaymentCdGameQuery from '../../hooks/usePaymentCdGameQuery'
 
 const { Search } = Input
-const Advertisement = () => {
+const PaymentCDGame = () => {
   const location = useLocation()
   const history = useHistory()
   const queryClient = useQueryClient()
@@ -31,7 +32,7 @@ const Advertisement = () => {
   const [keyword] = useState(searchUrl?.keyword || '')
   const [page] = useState(searchUrl?.page || 1)
 
-  const { data: advertise, isError, isLoading, isFetching } = useAdvertisementQuery([limit, keyword, page])
+  const { data: advertise, isError, isLoading, isFetching } = usePaymentCdGameQuery([limit, keyword, page])
   const data = advertise?.data || []
 
   const onCell = (record) => {
@@ -50,15 +51,60 @@ const Advertisement = () => {
       onCell,
     },
     {
-      title: 'Image',
-      key: 'image',
-      render: (advertise) => {
-        return (
-          <div className="advertise-list__img">
-            <img src={advertise.image} />
-          </div>
-        )
+      title: 'Money',
+      dataIndex: ['cd_game', 'price'],
+      width: '5%',
+      key: 'price',
+      render: (price) => {
+        return <div>{price}$</div>
       },
+      onCell,
+    },
+    {
+      title: 'Money After discount',
+      dataIndex: 'money',
+      width: '15%',
+      key: 'money',
+      render: (money) => {
+        return <div className="text-center">{money}$</div>
+      },
+      onCell,
+    },
+    {
+      title: 'Quantity',
+      dataIndex: 'quantity',
+      width: '5%',
+      key: 'quantity',
+      onCell,
+    },
+    // {
+    //   title: 'Image',
+    //   dataIndex: ['cd_game', 'image'],
+    //   key: 'cd_game',
+    //   render: (imageSrc) => {
+    //     return (
+    //       <div className="advertise-list__img">
+    //         <img src={imageSrc?.split(',')[0]} alt="Image" />
+    //       </div>
+    //     )
+    //   },
+    //   onCell,
+    // },
+    {
+      title: 'Customer',
+      dataIndex: ['user', 'full_name'],
+      key: 'user_name',
+      width: '15%',
+      render: (name) => {
+        return <div className="text-center">Customer: {name}</div>
+      },
+      onCell,
+    },
+    {
+      title: 'Email',
+      dataIndex: ['user', 'email'],
+      key: 'email',
+      width: '15%',
       onCell,
     },
     {
@@ -193,4 +239,4 @@ const Advertisement = () => {
   )
 }
 
-export default Advertisement
+export default PaymentCDGame

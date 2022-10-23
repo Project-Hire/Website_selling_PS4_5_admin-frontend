@@ -4,7 +4,17 @@ import PrivateRoute from '../routes/PrivateRoute'
 import Logo from '../asset/Logo-main.png'
 import { useState } from 'react'
 import '../style/PrivateLayout.css'
-import { ACCESSORY, ADMIN_LOGIN, ADVERTISEMENT, CDGAME, GAMECONSOLE, GIFTCARD, HOME, TRADEMARK } from '../config/path'
+import {
+  ACCESSORY,
+  ADMIN_LOGIN,
+  ADVERTISEMENT,
+  CDGAME,
+  GAMECONSOLE,
+  GIFTCARD,
+  HOME,
+  PAYMENT_CD_GAME,
+  TRADEMARK,
+} from '../config/path'
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FaGamepad } from 'react-icons/fa'
@@ -81,6 +91,12 @@ const PrivateLayout = ({ children }) => {
       icon: <AiFillCustomerService />,
       content: 'Accessory',
       path: ACCESSORY,
+    },
+    {
+      key: PAYMENT_CD_GAME,
+      icon: <AiFillCustomerService />,
+      content: 'Payment Cd Game',
+      path: PAYMENT_CD_GAME,
     },
   ]
 

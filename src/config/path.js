@@ -43,4 +43,4 @@ export const ACCESSORY_CREATE = `${ACCESSORY}/create`
 export const ACCESSORY_UPDATE = `${ACCESSORY}/:id/update`
 export const ACCESSORY_DETAIL = `${ACCESSORY}/detail/:id`
 
-export const PAYMENT_CD_GAME = `${ADMIN}/payment`
+export const PAYMENT_CD_GAME = `${ADMIN}/payment_cd_game`
