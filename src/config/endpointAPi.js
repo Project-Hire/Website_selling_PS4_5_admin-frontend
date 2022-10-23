@@ -45,3 +45,6 @@ export const API_ACCESSORY_DELETE = `${API_ACCESSORY}/delete/:id`
 export const API_ACCESSORY_STORE = `${API_ACCESSORY}/store`
 export const API_ACCESSORY_UPDATE = `${API_ACCESSORY}/update`
 export const API_ACCESSORY_DETAIL = `${API_ACCESSORY}/detail/:id`
+
+//Api Payment
+export const API_PAYMENT_CD_GAME = `${BASE_API}/api/accessory`

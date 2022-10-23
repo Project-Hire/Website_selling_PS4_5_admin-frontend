@@ -25,6 +25,7 @@ import {
   ACCESSORY_CREATE,
   ACCESSORY_UPDATE,
   ACCESSORY_DETAIL,
+  PAYMENT_CD_GAME,
 } from '../config/path'
 
 const routes = [
@@ -43,7 +44,7 @@ const routes = [
     restricted: false,
   },
 
-    //Advertisement path
+  //Advertisement path
   {
     path: ADVERTISEMENT,
     exact: true,
@@ -66,6 +67,13 @@ const routes = [
     restricted: false,
   },
   {
+    path: PAYMENT_CD_GAME,
+    exact: true,
+    isPrivate: true,
+    component: import('../components/payment/index'),
+    restricted: false,
+  },
+  {
     path: ADVERTISEMENT_DETAIL,
     exact: true,
     isPrivate: true,
@@ -73,7 +81,7 @@ const routes = [
     restricted: false,
   },
 
-    //CD Game path
+  //CD Game path
   {
     path: CDGAME,
     exact: true,
@@ -103,7 +111,7 @@ const routes = [
     restricted: false,
   },
 
-    //Gameconsole path
+  //Gameconsole path
   {
     path: GAMECONSOLE,
     exact: true,
@@ -133,7 +141,7 @@ const routes = [
     restricted: false,
   },
 
-    //Trademark path
+  //Trademark path
   {
     path: TRADEMARK,
     exact: true,
@@ -156,7 +164,7 @@ const routes = [
     restricted: false,
   },
 
-    //Gift card path
+  //Gift card path
   {
     path: GIFTCARD,
     exact: true,

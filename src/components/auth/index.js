@@ -1,7 +1,7 @@
 import { Button, Form, Input } from 'antd'
 import '../auth/Login.css'
 import Logo from '../../asset/Logo-main.png'
-import { useHistory, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { HOME } from '../../config/path'
 import { API_LOGIN } from '../../config/endpointAPi'

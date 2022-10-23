@@ -1,6 +1,6 @@
 import { Button, Form, Input } from 'antd'
 import moment from 'moment'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
 import '../../style/Advertisement.css'
 import { API_TRADEMARK_STORE } from '../../config/endpointAPi'

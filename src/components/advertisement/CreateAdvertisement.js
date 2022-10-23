@@ -1,24 +1,18 @@
 import { Button, Form, Input } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import moment from 'moment'
-import { useHistory, useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PrivateLayout from '../../layout/PrivateLayout'
 import '../../style/Advertisement.css'
 import { useQueryClient } from 'react-query'
 import { toast } from 'react-toastify'
 import { ADVERTISEMENT } from '../../config/path'
-import useAdvertisementCreate from '../../hooks/useAdvertisementCreate'
-import UploadFormItem from '../../common/UploadFormItem/index.js'
-import { API_UPLOAD, UPLOAD_PRESET } from '../../config/const'
-import axios from 'axios'
 import { API_ADVERTISEMENT_STORE } from '../../config/endpointAPi'
 import { postAxios } from '../../Http'
-
 
 const CreateAdvertisement = () => {
   const history = useHistory()
   const queryClient = useQueryClient()
-  const location = useLocation()
 
   const onCreateAdvertisement = (value) => {
     value.created_at = moment().format('YYYY-MM-DD HH:mm:ss')

@@ -26,7 +26,7 @@ export const GAMECONSOLE_CREATE = `${GAMECONSOLE}/create`
 export const GAMECONSOLE_UPDATE = `${GAMECONSOLE}/:id/update`
 export const GAMECONSOLE_DETAIL = `${GAMECONSOLE}/detail/:id`
 
-//Trade Mark 
+//Trade Mark
 export const TRADEMARK = `${ADMIN}/trademark`
 export const TRADEMARK_CREATE = `${TRADEMARK}/create`
 export const TRADEMARK_UPDATE = `${TRADEMARK}/:id/update`
@@ -37,9 +37,10 @@ export const GIFTCARD_CREATE = `${GIFTCARD}/create`
 export const GIFTCARD_UPDATE = `${GIFTCARD}/:id/update`
 export const GIFTCARD_DETAIL = `${GIFTCARD}/detail/:id`
 
-
 //Accessory
 export const ACCESSORY = `${ADMIN}/accessory`
 export const ACCESSORY_CREATE = `${ACCESSORY}/create`
 export const ACCESSORY_UPDATE = `${ACCESSORY}/:id/update`
 export const ACCESSORY_DETAIL = `${ACCESSORY}/detail/:id`
+
+export const PAYMENT_CD_GAME = `${ADMIN}/payment`
